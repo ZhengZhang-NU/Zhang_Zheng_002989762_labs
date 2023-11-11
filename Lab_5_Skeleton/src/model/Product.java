@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -12,9 +12,9 @@ package model;
 public class Product {
 
     private String prodName;
-    private int price;
+    private double price;
     private int modelNumber;
-
+    private int avail;
     private static int count = 0;
 
     @Override
@@ -35,14 +35,23 @@ public class Product {
         this.prodName = prodName;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
+    public int getAvail() {
+        return avail;
+    }
+
+    public void setAvail(int avail) {
+        this.avail = avail;
+    }
+
+   
     public int getModelNumber() {
         return modelNumber;
     }

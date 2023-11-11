@@ -6,8 +6,12 @@
 package ui;
 
 import java.awt.CardLayout;
+import javax.swing.JPanel;
+import model.Business;
+import model.MasterOrderList;
 import model.SupplierDirectory;
 import ui.AdminRole.AdminWorkAreaJPanel;
+import ui.CustomerRole.CustomerWorkAreaJPanel;
 import ui.SupplierRole.LoginSupplierJPanel;
 
 /**
@@ -19,12 +23,16 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    Business business;
     SupplierDirectory supplierDirectory;
-    
+    MasterOrderList masterOrderList;
+
     public MainJFrame() {
         initComponents();
-        supplierDirectory = new SupplierDirectory();
-        setSize(830,600);
+        business = new Business();
+        supplierDirectory = business.getSupplierDirectory();
+        masterOrderList = business.getMasterOrderList();
+        setSize(830, 600);
     }
 
     /**
@@ -67,7 +75,6 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnCustomer.setText("Customer");
-        btnCustomer.setEnabled(false);
         btnCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCustomerActionPerformed(evt);
@@ -124,8 +131,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
 
         AdminWorkAreaJPanel awajp = new AdminWorkAreaJPanel(userProcessContainer, supplierDirectory);
-        userProcessContainer.add("AdminWorkAreaJPanel",awajp);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        userProcessContainer.add("AdminWorkAreaJPanel", awajp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
 
     }//GEN-LAST:event_btnAdminActionPerformed
@@ -134,12 +141,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
         LoginSupplierJPanel ls = new LoginSupplierJPanel(userProcessContainer, supplierDirectory);
         userProcessContainer.add("LoginSupplierJPanel", ls);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnSupplierActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-
+        CustomerWorkAreaJPanel cwap = new CustomerWorkAreaJPanel(userProcessContainer, supplierDirectory, masterOrderList);
+        userProcessContainer.add(" CustomerWorkAreaJPanel", cwap);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCustomerActionPerformed
 
     /**
@@ -185,4 +195,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel userProcessContainer;
     // End of variables declaration//GEN-END:variables
+
+    private CustomerWorkAreaJPanel newCustomerWorkAreaJPanel(JPanel userProcessContainer, SupplierDirectory supplierDirectory, MasterOrderList masterOrderList) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
